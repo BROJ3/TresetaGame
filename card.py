@@ -1,4 +1,6 @@
 #the card class
+#has number, suit, point value
+#and strength? - do I code that in main?
 
 class Card():
 	def __init__(self,suit,value,number):
@@ -15,3 +17,5 @@ class Card():
 
 	def get_value(self):
 		return self.value
+	
+

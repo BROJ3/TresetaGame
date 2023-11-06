@@ -7,9 +7,9 @@ from hand import Hand
 moj_spil = Deck()
 
 moj_spil.add_player("Player 1")
-moj_spil.add_player("Player 2")
+#moj_spil.add_player("Player 2")
 
-hands = moj_spil.deal_cards(num_cards=10)
+hands = moj_spil.deal_cards(num_cards=4)
 
 for player, hand in hands.items():
     print("===================")
@@ -17,7 +17,7 @@ for player, hand in hands.items():
     print("======================")
     for card in hand:
         print(card.get_name())
-        print(card.get_value())
+        #print(card.get_value())
 
 print("There are ", len(moj_spil.playing_deck_list)," cards left in the deck")
 
@@ -26,34 +26,34 @@ while True:
     
 	if action == 'play':
 
-		#print("GAME HS BEGUN, THESE ARE YOUR CARDS")
-
+		print("\nGAME HS BEGUN, THESE ARE YOUR CARDS\n")
 		for player, hand in hands.items():
+
 			if player == 'Player 1':
+				#print the player's cards
 				for card in hand:
 					print(card.get_name())
+
+				#select a card to play
+				print("Which card do you want to play?")	
 				selected_card = input("Select a card to play\n")
-				selected_suit = input("Select a suit to play\n")
+				selected_suit=input("which suit?")
+				print(selected_card," of ", selected_suit," chosen")
 				for card in hand:
-					if selected_card == card.get_name()[0]:
-						print("idemo")
-						hand.pop(int(selected_card))
-					#print(len(hand))
+					if selected_card == card.get_name()[0] and selected_suit == card.get_name()[2]:
+						print("ima taj")
+					else:
+						print("nema taj")
+					
+					
+						
 					
 
-				#print('===========================') 
-				#card_played_number = input("What card do you want to play\n")
-				#card_played_suit = input("Of which suit?\n")
-				#if card_played_number == card.get_name()[0]:
-					#Hand.cards.pop(card)
-					#	print("ima majstore")
-					#else: 
-					#	print("Otkud??????")
-		#	elif player == 'Player 2':
-		#		print("DRUGE KARTE")
-		#		for card in hand:
-		#			print(card.get_name())
-		#print("IT WOULD BE HELPFUL TO BE ABLE TO POP ONE CARD INTO THE POT TO PLAY AND TAKE TURNS DOING IT WHILST D")
 
-	if action == 'q':
+	if action =='help':
+		print("no help yet, but press q to exit")
+
+	elif action == 'q':
     		break
+
+		
