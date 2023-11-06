@@ -39,8 +39,10 @@ while True:
 				selected_card = input("Select a card to play\n")
 				selected_suit=input("which suit?")
 				print(selected_card," of ", selected_suit," chosen")
+				
 				for card in hand:
-					if selected_card == card.get_name()[0] and selected_suit == card.get_name()[2]:
+					print(card.get_name())
+					if selected_card == card.get_name()[0] and selected_suit[0] == card.get_name()[2][0]:
 						print("ima taj")
 					else:
 						print("nema taj")
