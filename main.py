@@ -6,6 +6,7 @@ from hand import Hand
 
 moj_spil = Deck()
 
+
 moj_spil.add_player("Player 1")
 #moj_spil.add_player("Player 2")
 
@@ -21,6 +22,9 @@ for player, hand in hands.items():
 
 print("There are ", len(moj_spil.playing_deck_list)," cards left in the deck")
 
+
+played_hand = []
+
 while True:
 	action= input("what would you like to do?")
     
@@ -34,18 +38,40 @@ while True:
 				for card in hand:
 					print(card.get_name())
 
-				#select a card to play
+				#have a player choose a card to play
+				def play_card():
+					played_hand = []
+					print("Which card do you want to play?")	
+					selected_card = input("Select a card to play\n")
+					selected_suit=input("which suit?")
+					print(selected_card," of ", selected_suit," chosen")
+
+					for card in hand:
+						print(card.get_name()[0]," ",card.get_name()[2])
+						if selected_card == card.get_name()[0] and selected_suit[0] == card.get_name()[2][0]:
+							print("ima taj")
+						else:
+							print("nema taj")
+					return None
+				
+				
+				
 				print("Which card do you want to play?")	
 				selected_card = input("Select a card to play\n")
 				selected_suit=input("which suit?")
 				print(selected_card," of ", selected_suit," chosen")
-				
 				for card in hand:
-					print(card.get_name())
 					if selected_card == card.get_name()[0] and selected_suit[0] == card.get_name()[2][0]:
 						print("ima taj")
-					else:
-						print("nema taj")
+						print(card.get_name()[0])
+						hand.remove(card)
+
+						played_hand.append(card)
+					#else:
+						#print("nema taj")
+				for i in played_hand:
+					print(i.get_name())
+
 					
 					
 						
