@@ -12,8 +12,8 @@ class Card():
 	def get_name(self):
 		return self.card_name
 	
-	def get_rank(self):
-		return self.rank
+	def get_suit(self):
+		return self.suit
 
 	def get_value(self):
 		return self.value

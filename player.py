@@ -6,7 +6,8 @@ class Player():
 
     def play_card(self,card):
         #remove card from had and throw into played cards
-        self.hand.pop(card)
+        self.hand.remove(card)
+        return card
 
     def get_name(self):
         #Return the id of the player
