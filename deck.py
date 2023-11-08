@@ -51,6 +51,6 @@ class Deck():
 			hand = []
 			for i in range(num_cards):
 				card = self.playing_deck_list.pop()
-				hand.append(card)
+				player.hand.append(card)
 			hands[player] = hand
 		return hands
