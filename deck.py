@@ -4,8 +4,8 @@ from card import Card
 
 class Deck():
 	#defining numbers an suits of the deck
-	SUIT_TUPLE = ('Kupe','Bate','Spade','Dinari')
-	STANDARD_DICT = {'Ace':8,'2':9,'3':10,'4':1,'5':2,'6':3,'7':4,'Fanat':5,'Caval':6,'King':7}
+	SUIT_TUPLE = ('Kupe','Bate','Spade','Denari')
+	STANDARD_DICT = {'4':1,'5':2,'6':3,'7':4,'Fanat':5,'Caval':6,'King':7,'Ace':8,'2':9,'3':10}
 
 
 	#we want the deck to
@@ -42,15 +42,13 @@ class Deck():
 		igrac = Player(player_name)
 		self.players.append(igrac)
 		
-		
 
-
-	def deal_cards(self, num_cards=10):
+	def deal_cards(self, num_cards):
 		hands = {}
 		for player in self.players:
-			hand = []
+			
 			for i in range(num_cards):
 				card = self.playing_deck_list.pop()
 				player.hand.append(card)
-			hands[player] = hand
-		return hands
+				
+		return player.hand

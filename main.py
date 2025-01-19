@@ -2,24 +2,24 @@ import random
 from card import Card
 from deck import Deck
 from player import Player
-#import game_functions as gf
-
-#gf.start_game() deleted because hands is not returned to be used
 
 moj_spil = Deck()
 
 
 moj_spil.add_player() #adds player 1
 moj_spil.add_player() #adds player 2
+
 hands = moj_spil.deal_cards(num_cards=5)
 
 for player in moj_spil.players:
 	print(player.get_name())
+	print(player.show_hand())
+	print("===")
 
 print("There are ", len(moj_spil.playing_deck_list)," cards left in the deck")
 #hands = gf.start_game()
 current_player_index = 0
-
+'''
 while True:
 	current_player = moj_spil.players[current_player_index]
 	print(f"\nIt's {current_player.get_name()}'s turn.")
@@ -56,4 +56,5 @@ while True:
 
 	elif action == 'q':
 		break
- 
+
+ '''

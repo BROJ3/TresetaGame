@@ -6,7 +6,7 @@ class Card():
 	def __init__(self,suit,value,number):
 		self.suit = suit
 		self. number = number
-		self.card_name =  number , 'of' , suit
+		self.card_name =  str(number) + ' of ' + str(suit)
 		self.value = value
 
 	def get_name(self):

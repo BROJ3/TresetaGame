@@ -14,8 +14,11 @@ class Player():
         return self.name
     
     def show_hand(self):
+        cards_to_return=[]
         for card in self.hand:
-		        print(card.get_name())
-                    
-    
+            cards_to_return.append(card.get_name())
+        return cards_to_return            
+
+                
+
     
