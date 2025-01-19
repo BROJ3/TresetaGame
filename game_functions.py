@@ -7,7 +7,6 @@ def start_game():
 
     moj_spil = Deck()
 
-
     moj_spil.add_player() #adds player 1
     #moj_spil.add_player() #adds player 2
     hands = moj_spil.deal_cards(num_cards=5)

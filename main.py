@@ -5,7 +5,6 @@ from player import Player
 
 moj_spil = Deck()
 
-
 moj_spil.add_player() #adds player 1
 moj_spil.add_player() #adds player 2
 
@@ -19,42 +18,43 @@ for player in moj_spil.players:
 print("There are ", len(moj_spil.playing_deck_list)," cards left in the deck")
 #hands = gf.start_game()
 current_player_index = 0
-'''
+
 while True:
+
 	current_player = moj_spil.players[current_player_index]
 	print(f"\nIt's {current_player.get_name()}'s turn.")
-	action= input("what would you like to do?")
+	action= input("what would you like to do? (play/q)")
     
 	if action == 'play':
-		
-		current_player_index = (current_player_index + 1) % len(moj_spil.players)
+		print("\nGAME HAS BEGUN, THESE ARE YOUR CARDS\n")
+		print(current_player.show_hand())
 
-		print("\nGAME HS BEGUN, THESE ARE YOUR CARDS\n")
-		for hand in hands.items():
-			print("===================")
-			print(f"{player.get_name()}'s hand")
-			print("======================")
-			player.show_hand()
+		#have a player choose a card to play	
+		selected_number = input("Select a card to play\n")
+		selected_suit=input("which suit?")
 
-			#have a player choose a card to play	
-			selected_card = input("Select a card to play\npress q to quit\n")
-			selected_suit=input("which suit?")
-			print(selected_card," of ", selected_suit," chosen")
 
-			for card in player.hand:
-				if selected_card == card.get_name()[0] and selected_suit[0] == card.get_name()[2][0]:
-							print("ima taj")
-							played_card = player.play_card(card) #works but Do I want it like this
+		chosen_card = None
 
+		for card in current_player.hand:
+			if selected_number.capitalize() == card.get_number() and selected_suit.capitalize() == card.get_suit():
+				chosen_card=card
+				break
+
+		if chosen_card:
+			played_card = current_player.play_card(chosen_card, moj_spil)  # Pass the deck instance
+			print(f"Played card: {played_card.get_name()}")
 			
-			#for card in player.hand:
-			#        print(card.get_name())
 
+		else:
+			print(f"Invalid card: {selected_number} of {selected_suit} is not in your hand.")
 
+		current_player_index = (current_player_index + 1) % len(moj_spil.players)
+		print(moj_spil.stack_in_play)
 
 		
 
 	elif action == 'q':
 		break
 
- '''
+ 

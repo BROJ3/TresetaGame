@@ -11,7 +11,10 @@ class Card():
 
 	def get_name(self):
 		return self.card_name
-	
+
+	def get_number(self):
+		return self.number
+
 	def get_suit(self):
 		return self.suit
 

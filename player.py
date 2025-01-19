@@ -3,10 +3,11 @@ class Player():
         self.name=name
         self.hand=[]
         self.stack=[]
+        self.points=[]
 
-    def play_card(self,card):
-        #remove card from had and throw into played cards
+    def play_card(self,card,deck):
         self.hand.remove(card)
+        deck.add_to_stack(card)
         return card
 
     def get_name(self):
