@@ -27,18 +27,19 @@ while True:
     
 	if action == 'play':
 		print("\nGAME HAS BEGUN, THESE ARE YOUR CARDS\n")
+		suit_in_play = None
 		print(current_player.show_hand())
 
 		#have a player choose a card to play	
 		selected_number = input("Select a card to play\n")
 		selected_suit=input("which suit?")
 
-
 		chosen_card = None
 
 		for card in current_player.hand:
 			if selected_number.capitalize() == card.get_number() and selected_suit.capitalize() == card.get_suit():
 				chosen_card=card
+				suit_in_play = card.get_suit()
 				break
 
 		if chosen_card:
@@ -50,9 +51,20 @@ while True:
 			print(f"Invalid card: {selected_number} of {selected_suit} is not in your hand.")
 
 		current_player_index = (current_player_index + 1) % len(moj_spil.players)
+		
+
+
 		print(moj_spil.stack_in_play)
 
-		
+		if len(moj_spil.stack_in_play) == 2:
+			suit_in_play = None
+			for card in moj_spil.stack_in_play:
+				moj_spil.stack_in_play.remove(card)
+
+				#how do we define the winning player?
+				#winning_player.points.append(card)
+
+        			
 
 	elif action == 'q':
 		break
