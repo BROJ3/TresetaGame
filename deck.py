@@ -63,3 +63,18 @@ class Deck():
 		self.stack_in_play.clear()
 		self.current_suit=None
 
+	# Deal cards to players: winner first
+		self.deal_one_card(winning_player)
+		for player in self.players:
+			if player != winning_player:
+				self.deal_one_card(player)
+
+		return self.players.index(winning_player) if winning_player else 0
+	
+	def deal_one_card(self, player):
+		if self.playing_deck_list:
+			card = self.playing_deck_list.pop()
+			player.hand.append(card)
+			print(f"{player.get_name()} received {card.get_name()}.")
+
+

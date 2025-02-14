@@ -8,7 +8,7 @@ moj_spil = Deck()
 moj_spil.add_player() #adds player 1
 moj_spil.add_player() #adds player 2
 
-hands = moj_spil.deal_cards(num_cards=5)
+hands = moj_spil.deal_cards(num_cards=10)
 
 for player in moj_spil.players:
 	print(player.get_name())
@@ -59,10 +59,6 @@ while True:
 				print("Invalid selection or wrong suit. Try again.")
 
 			
-
-		############
-
-		##########################
 		if chosen_card:
 			played_card = current_player.play_card(chosen_card, moj_spil)  # Pass the deck instance
 			print(f"Played card: {played_card.get_name()}")
@@ -77,7 +73,7 @@ while True:
 		print(moj_spil.stack_in_play)
 
 		if len(moj_spil.stack_in_play) == 2:
-			moj_spil.determine_winner()
+			current_player_index = moj_spil.determine_winner() 
 			#suit_in_play = None
 			while moj_spil.stack_in_play:
 				moj_spil.stack_in_play.pop()
@@ -90,8 +86,15 @@ while True:
 				print(player.stack)
 				print("===")
 
-        			
 
+		if not moj_spil.playing_deck_list and all(len(player.hand) == 0 for player in moj_spil.players):
+			print("Game over!")
+			for player in moj_spil.players:
+				print(f"{player.get_name()} scored {player.points} points.")
+			break
+
+
+        			
 	elif action == 'q':
 		break
 
