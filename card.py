@@ -21,3 +21,10 @@ class Card():
 	def get_value(self):
 		return self.value
 	
+	def get_bella_value(self):
+		if self.number == "Ace":
+			return 1
+		elif self.number in ("King", "Caval", "Fanat", "2", "3"):
+			return 0.33
+		else:
+			return 0

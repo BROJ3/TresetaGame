@@ -15,7 +15,6 @@ for player in moj_spil.players:
 	print(player.show_hand())
 	print("===")
 
-print("There are ", len(moj_spil.playing_deck_list)," cards left in the deck")
 #hands = gf.start_game()
 current_player_index = 0
 
@@ -28,8 +27,6 @@ while True:
 	if action == 'play':
 		suit_in_play = None
 		print(current_player.show_hand())
-
-		#have a player choose a card to play	
 
 
 		chosen_card = None
@@ -70,7 +67,7 @@ while True:
 		
 
 
-		print(moj_spil.stack_in_play)
+		#print(moj_spil.stack_in_play)
 
 		if len(moj_spil.stack_in_play) == 2:
 			current_player_index = moj_spil.determine_winner() 
@@ -90,8 +87,10 @@ while True:
 		if not moj_spil.playing_deck_list and all(len(player.hand) == 0 for player in moj_spil.players):
 			print("Game over!")
 			for player in moj_spil.players:
-				print(f"{player.get_name()} scored {player.points} points.")
+				player_points = player.calculate_points()
+				print(f"{player.get_name()} scored {player_points:.2f} points.")
 			break
+
 
 
         			
