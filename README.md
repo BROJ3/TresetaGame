@@ -6,3 +6,8 @@ Game features following methods:
 - shuffling and dealing cards
 - moving cards deck -> hands of multiple players -> playing_stack ->points_stack
 - flags recent winner
+
+
+
+MISSING:
+- adding +1 point to the last hand
