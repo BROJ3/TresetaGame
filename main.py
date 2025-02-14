@@ -26,27 +26,47 @@ while True:
 	action= input("what would you like to do? (play/q)")
     
 	if action == 'play':
-		print("\nGAME HAS BEGUN, THESE ARE YOUR CARDS\n")
 		suit_in_play = None
 		print(current_player.show_hand())
 
 		#have a player choose a card to play	
-		selected_number = input("Select a card to play\n")
-		selected_suit=input("which suit?")
+
 
 		chosen_card = None
+		while chosen_card is None:
+			selected_number = input("Select a card number: ").capitalize()
+			selected_suit = input("Select card suit: ").capitalize()
 
-		for card in current_player.hand:
-			if selected_number.capitalize() == card.get_number() and selected_suit.capitalize() == card.get_suit():
-				chosen_card=card
-				suit_in_play = card.get_suit()
-				break
+			# Check if player has cards that match the suit in play
+			matching_cards = [card for card in current_player.hand if card.get_suit() == moj_spil.current_suit]
 
+			for card in current_player.hand:
+				if selected_number == card.get_number() and selected_suit == card.get_suit():
+					if moj_spil.current_suit is None:  # First card of the round
+						moj_spil.current_suit = selected_suit
+						print(f"Suit in play is now: {moj_spil.current_suit}")
+						chosen_card = card
+						break
+					elif selected_suit != moj_spil.current_suit and matching_cards:
+						print(f"You must play a card from the suit in play: {moj_spil.current_suit}")
+						chosen_card = None
+						break
+					else:  # Either the suit matches, or there are no matching cards
+						chosen_card = card
+						break
+
+			if chosen_card is None:
+				print("Invalid selection or wrong suit. Try again.")
+
+			
+
+		############
+
+		##########################
 		if chosen_card:
 			played_card = current_player.play_card(chosen_card, moj_spil)  # Pass the deck instance
 			print(f"Played card: {played_card.get_name()}")
-			
-
+			suit_in_play = card.get_suit()
 		else:
 			print(f"Invalid card: {selected_number} of {selected_suit} is not in your hand.")
 
@@ -58,15 +78,15 @@ while True:
 
 		if len(moj_spil.stack_in_play) == 2:
 			moj_spil.determine_winner()
-			suit_in_play = None
+			#suit_in_play = None
 			while moj_spil.stack_in_play:
 				moj_spil.stack_in_play.pop()
+				suit_in_play=None
 
 		
 		if len(player.show_hand()) == 0:
 			for player in moj_spil.players:
 				print(player.get_name())
-				print(player.show_hand())
 				print(player.stack)
 				print("===")
 
