@@ -7,7 +7,7 @@ class Player():
 
     def play_card(self,card,deck):
         self.hand.remove(card)
-        deck.add_to_stack(card)
+        deck.add_to_stack((self,card))
         return card
 
     def get_name(self):

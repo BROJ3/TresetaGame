@@ -57,12 +57,18 @@ while True:
 		print(moj_spil.stack_in_play)
 
 		if len(moj_spil.stack_in_play) == 2:
+			moj_spil.determine_winner()
 			suit_in_play = None
-			for card in moj_spil.stack_in_play:
-				moj_spil.stack_in_play.remove(card)
+			while moj_spil.stack_in_play:
+				moj_spil.stack_in_play.pop()
 
-				#how do we define the winning player?
-				#winning_player.points.append(card)
+		
+		if len(player.show_hand()) == 0:
+			for player in moj_spil.players:
+				print(player.get_name())
+				print(player.show_hand())
+				print(player.stack)
+				print("===")
 
         			
 
