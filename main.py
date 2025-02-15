@@ -37,6 +37,12 @@ while True:
 			# Check if player has cards that match the suit in play
 			matching_cards = [card for card in current_player.hand if card.get_suit() == moj_spil.current_suit]
 
+			#it is same as this:
+			#matching_cards = []
+			#for card in current_player.hand:
+				#if card.get_suit() == moj_spil.current_suit:
+					#matching_cards.append(card)
+
 			for card in current_player.hand:
 				if selected_number == card.get_number() and selected_suit == card.get_suit():
 					if moj_spil.current_suit is None:  # First card of the round
@@ -65,25 +71,21 @@ while True:
 
 		current_player_index = (current_player_index + 1) % len(moj_spil.players)
 		
-
-
-		#print(moj_spil.stack_in_play)
-
+		#mechanics for "hand"
 		if len(moj_spil.stack_in_play) == 2:
 			current_player_index = moj_spil.determine_winner() 
-			#suit_in_play = None
 			while moj_spil.stack_in_play:
 				moj_spil.stack_in_play.pop()
 				suit_in_play=None
-
 		
+		#print points once game is "done"
 		if len(player.show_hand()) == 0:
 			for player in moj_spil.players:
 				print(player.get_name())
 				print(player.stack)
 				print("===")
 
-
+		#count point
 		if not moj_spil.playing_deck_list and all(len(player.hand) == 0 for player in moj_spil.players):
 			print("Game over!")
 			for player in moj_spil.players:
