@@ -17,6 +17,8 @@ class Deck():
 		self.players=[]
 		self.stack_in_play=[]
 		self.current_suit = None 
+		self.last_hand_winner = None 
+		
 
 		#create cards and append to deck
 		for suit in Deck.SUIT_TUPLE:
@@ -54,8 +56,11 @@ class Deck():
 		self.stack_in_play.append(card)
 
 	def determine_winner(self):
+		
 		winning_tuple = max(self.stack_in_play, key=lambda item: item[1].get_value())
 		winning_player, winning_card = winning_tuple
+		self.last_hand_winner = winning_player
+
 
 		winning_player.stack.extend(card for _, card in self.stack_in_play)
 		print(f"{winning_player.get_name()} wins the round and collects these cards: {[card.get_name() for _, card in self.stack_in_play]}")

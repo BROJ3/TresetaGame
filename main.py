@@ -82,16 +82,26 @@ while True:
 		if len(player.show_hand()) == 0:
 			for player in moj_spil.players:
 				print(player.get_name())
-				print(player.stack)
+				print(len(player.stack))
 				print("===")
 
 		#count point
 		if not moj_spil.playing_deck_list and all(len(player.hand) == 0 for player in moj_spil.players):
-			print("Game over!")
+
+			if moj_spil.last_hand_winner:
+				print(f"{moj_spil.last_hand_winner.get_name()} gets an extra point for winning the last hand!")
+				moj_spil.last_hand_winner.points.append(1)
+
 			for player in moj_spil.players:
-				player_points = player.calculate_points()
+				player_points = player.calculate_points() + len(player.points)
 				print(f"{player.get_name()} scored {player_points:.2f} points.")
+				print("Game over!")
+
 			break
+			#for player in moj_spil.players:
+			#	player_points = player.calculate_points()
+			#	print(f"{player.get_name()} scored {player_points:.2f} points.")
+			#break
 
 
 
