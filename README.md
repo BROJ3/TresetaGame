@@ -11,3 +11,6 @@ Game features following methods:
 
 MISSING:
 - adding +1 point to the last hand
+- implement game functions folder
+- make a GUI
+- play a bot
