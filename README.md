@@ -8,9 +8,8 @@ Game features following methods:
 - flags recent winner
 
 
-
 MISSING:
-- adding +1 point to the last hand
 - implement game functions folder
 - make a GUI
 - play a bot
+- run AI model on it

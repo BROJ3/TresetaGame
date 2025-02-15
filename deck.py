@@ -61,7 +61,6 @@ class Deck():
 		winning_player, winning_card = winning_tuple
 		self.last_hand_winner = winning_player
 
-
 		winning_player.stack.extend(card for _, card in self.stack_in_play)
 		print(f"{winning_player.get_name()} wins the round and collects these cards: {[card.get_name() for _, card in self.stack_in_play]}")
 
