@@ -50,7 +50,7 @@ class Deck():
 				card = self.playing_deck_list.pop()
 				player.hand.append(card)
 
-		return player.hand
+		#return player.hand
 	
 	def add_to_stack(self,card):
 		self.stack_in_play.append(card)
@@ -67,7 +67,7 @@ class Deck():
 		self.stack_in_play.clear()
 		self.current_suit=None
 
-	# Deal cards to players: winner first
+	# Deal cards to winner first
 		self.deal_one_card(winning_player)
 		for player in self.players:
 			if player != winning_player:
