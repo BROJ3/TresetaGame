@@ -26,3 +26,5 @@ class Player():
         for card in self.stack:
             total_points += card.get_bella_value()  # Assuming you have get_bella_value() in Card
         return total_points
+
+

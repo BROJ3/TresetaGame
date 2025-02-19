@@ -50,15 +50,26 @@ class Deck():
 				card = self.playing_deck_list.pop()
 				player.hand.append(card)
 
-		#return player.hand
 	
 	def add_to_stack(self,card):
 		self.stack_in_play.append(card)
 
 	def determine_winner(self):
+
+		first_player, first_card = self.stack_in_play[0]
+		second_player, second_card = self.stack_in_play[1]
+
+    	# Check if the second player has the required suit in their hand
 		
-		winning_tuple = max(self.stack_in_play, key=lambda item: item[1].get_value())
-		winning_player, winning_card = winning_tuple
+		has_suit = any(card.get_suit() == first_card.get_suit() for card in second_player.hand)
+		
+		if not has_suit:
+			winning_player,winning_card = first_player, first_card
+			print(f"{second_player.get_name()} had no {first_card.get_suit()} cards and played {second_card.get_name()}. {first_player.get_name()} wins automatically!")
+		else:
+			winning_tuple = max(self.stack_in_play, key=lambda item: item[1].get_value())
+			winning_player, winning_card = winning_tuple
+		
 		self.last_hand_winner = winning_player
 
 		winning_player.stack.extend(card for _, card in self.stack_in_play)
@@ -67,7 +78,7 @@ class Deck():
 		self.stack_in_play.clear()
 		self.current_suit=None
 
-	# Deal cards to winner first
+		#is there a simplier way to do this?	
 		self.deal_one_card(winning_player)
 		for player in self.players:
 			if player != winning_player:
