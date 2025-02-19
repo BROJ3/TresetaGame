@@ -8,6 +8,7 @@ class Player():
     def play_card(self,card,deck):
         self.hand.remove(card)
         deck.add_to_stack((self,card))
+        self.sort_hand()
         return card
 
     def get_name(self):
@@ -28,3 +29,13 @@ class Player():
         return total_points
 
 
+
+    def receive_card(self, card):
+        """Add a card to hand and immediately re-sort it."""
+        self.hand.append(card)
+        self.sort_hand()
+
+    def sort_hand(self):
+        """Sorts hand by suit first, then by value within each suit."""
+        suit_order = {'Kupe': 0, 'Bate': 1, 'Spade': 2, 'Denari': 3}  # Define a fixed suit order
+        self.hand.sort(key=lambda card: (suit_order[card.get_suit()], card.get_value()))

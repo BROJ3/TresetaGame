@@ -52,10 +52,10 @@ class Deck():
 
 	def deal_cards(self, num_cards):
 		for player in self.players:
-			
-			for i in range(num_cards):
+			for _ in range(num_cards):
 				card = self.playing_deck_list.pop()
-				player.hand.append(card)
+				player.receive_card(card)
+
 
 	
 	def add_to_stack(self,card):
@@ -85,16 +85,19 @@ class Deck():
 		# Winner takes the stack
 		winning_player.stack.extend(card for _, card in self.stack_in_play)
 		print(f"{winning_player.get_name()} wins the round and collects these cards: {[card.get_name() for _, card in self.stack_in_play]}")
-
 		# Reset the playing stack
 		self.stack_in_play.clear()
 		self.current_suit = None
 
 		# Deal cards for the next round
 		self.deal_one_card(winning_player)
+		
 		for player in self.players:
+			player.sort_hand()
 			if player != winning_player:
 				self.deal_one_card(player)
+				player.sort_hand()
+
 
 		return self.players.index(winning_player) if winning_player else 0
 
