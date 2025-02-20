@@ -2,10 +2,7 @@ import random
 from player import Player
 from card import Card
 
-#let me know if you have questions or something is unclear
-
 class Deck():
-	#defining numbers an suits of the deck
 	SUIT_TUPLE = ('Kupe','Bate','Spade','Denari')
 	STANDARD_DICT = {'4':1,'5':2,'6':3,'7':4,'Fanat':5,'Caval':6,'King':7,'Ace':8,'2':9,'3':10}
 
@@ -13,8 +10,6 @@ class Deck():
 		
 		self.starting_deck_list=[] #pre-shuffled deck
 		self.playing_deck_list=[] #shuffled deck
-
-		#will be two until coded otherwise
 		self.next_player_num = 0
 		self.players=[]
 		self.stack_in_play=[]
@@ -22,17 +17,14 @@ class Deck():
 		self.last_hand_winner = None
 		self.played_cards=[]
 
-		
-
-		#create cards and append to deck
 		for suit in Deck.SUIT_TUPLE:
 			for value, rank in rank_value_dict.items():
 				o_card = Card(suit,rank,value)
 				self.starting_deck_list.append(o_card)
-
 		
 		self.shuffle()
 
+	#making sure it is well shuffled for shits and giggles
 	def shuffle(self):
 		self.playing_deck_list = self.starting_deck_list.copy()
 		random.shuffle(self.playing_deck_list)
@@ -40,7 +32,6 @@ class Deck():
 		random.shuffle(self.playing_deck_list)
 
 	def add_player(self, name=None):
-		"""Adds a player to the game, allowing for a bot name."""
 		if name is None:
 			player_name = f"Player_{len(self.players) + 1}"
 		else:
@@ -48,7 +39,6 @@ class Deck():
 
 		player = Player(player_name)
 		self.players.append(player)
-		
 
 	def deal_cards(self, num_cards):
 		for player in self.players:
@@ -56,19 +46,16 @@ class Deck():
 				card = self.playing_deck_list.pop()
 				player.receive_card(card)
 
-
-	
 	def add_to_stack(self,card):
 		self.stack_in_play.append(card)
 		self.played_cards.append(card)
 
 	def determine_winner(self):
-		"""Determine the winner based on Tressette rules: must follow suit or lose if they don't have it."""
-		
+
 		first_player, first_card = self.stack_in_play[0]
 		second_player, second_card = self.stack_in_play[1]
 
-		# Check if the second player HAD the required suit BEFORE they played
+		# Check if the second player HAD the required suit BEFORE they played   - is this the best way?
 		had_suit_before_playing = any(card.get_suit() == first_card.get_suit() for card in second_player.hand + [second_card])
 
 		if not had_suit_before_playing:

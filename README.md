@@ -26,6 +26,9 @@ A Python representation of the old Italian card game "Triestine" (Tressette) usi
   - Ends when all cards have been played.
   - Displays total player scores.
 
+### **Pending Fixes**
+- sometimes illegal moves (playing different suit than necessary) are allowed by the game
+
 ---
 
 ### **Future Improvements**
@@ -36,3 +39,5 @@ A Python representation of the old Italian card game "Triestine" (Tressette) usi
 - [ ] **Online Multiplayer Mode**
 
 This project demonstrates OOP principles, structured game flow, and logic-based decision-making in Python.
+
+

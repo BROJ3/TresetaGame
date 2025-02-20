@@ -21,7 +21,6 @@ else:
 			take_turn(current_player, moj_spil)
 			current_player_index = (current_player_index + 1) % len(moj_spil.players)
 			
-			#mechanics for "hand"
 			if len(moj_spil.stack_in_play) == 2:
 				current_player_index = moj_spil.determine_winner()
 				moj_spil.stack_in_play.clear()
@@ -29,6 +28,5 @@ else:
 				suit_in_play=None
 				moj_spil.current_suit=None
 			
-			#print points once game is "done"
 			if check_winner(moj_spil):
 				break
