@@ -21,6 +21,6 @@ class Card():
 		if self.number == "Ace":
 			return 1
 		elif self.number in ("King", "Caval", "Fanat", "2", "3"):
-			return 0.33
+			return 1/3
 		else:
 			return 0

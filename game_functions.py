@@ -3,11 +3,9 @@ from deck import Deck
 from player import Player
 
 def setup_game():
-    """Initialize the game and let the user choose Player 2 type."""
     moj_spil = Deck()
     moj_spil.add_player()  # Player 1
 
-    # Ask if Player 2 should be a bot or human
     player_2_type = input("Do you want Player 2 to be a bot? (y/n): ").strip().lower()
 
     if player_2_type == 'y':
@@ -20,14 +18,11 @@ def setup_game():
     moj_spil.deal_cards(num_cards=10)
     return moj_spil
 
-def take_turn(current_player, moj_spil):
-    """Handles a turn for a player or AI bot, enforcing must-follow-suit rules."""
+def take_turn(current_player, moj_spil): 
     
-    # If the current player is a bot, enforce rules and make the bot play
     if current_player.get_name() == "Bot_2":
         return bot_play_turn(current_player, moj_spil)
 
-    # Human player turn (no changes)
     print(current_player.show_hand())
     print(f"\nIt's {current_player.get_name()}'s turn.")
     suit_in_play = moj_spil.current_suit
@@ -38,7 +33,6 @@ def take_turn(current_player, moj_spil):
         selected_suit = input("Select card suit: ").capitalize()
 
         matching_cards = [card for card in current_player.hand if card.get_suit() == suit_in_play]
-
         for card in current_player.hand:
             if selected_number == card.get_number() and selected_suit == card.get_suit():
                 if suit_in_play is None:
@@ -88,5 +82,8 @@ def bot_play_turn(bot_player, moj_spil):
 
     print(f"{bot_player.get_name()} (Bot) played {chosen_card.get_name()}.")
     bot_player.play_card(chosen_card, moj_spil)
+    moj_spil.current_suit = chosen_card.get_suit()
+    suit_in_play = chosen_card.get_suit()
+
     return chosen_card
 
